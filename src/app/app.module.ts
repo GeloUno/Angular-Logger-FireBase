@@ -19,6 +19,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
+import {MatDialogModule} from '@angular/material/dialog';
 const config = {
   apiKey: 'AIzaSyBb9VdKNi3aUTAi7jITsa3C1bIrK_XdJEs',
   authDomain: 'loggerfirebase.firebaseapp.com',
@@ -48,7 +49,8 @@ const config = {
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

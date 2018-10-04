@@ -1,26 +1,26 @@
-<form class="example-form" >
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="e-mail" [formControl]="emailFormControl"
-
-               >
-        <!-- <mat-hint>Wprowadź e-maila</mat-hint> -->
-        <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+<form [formGroup]="loginMess" (ngSubmit)="onSubmit(form)" class="example-form" #form="ngForm">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="e-mail: " [formControlName]="'emailFormControl'" name="emailFormControl" id="emailFormControl">
+    <!-- <mat-hint>Wprowadź e-maila</mat-hint> -->
+    <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
           Proszę wprowadzić poprawny adrea e-mail
         </mat-error>
         <mat-error *ngIf="emailFormControl.hasError('required')">
           Email jest <strong>nie poprawny</strong>
         </mat-error> -->
-      </mat-form-field>
+  </mat-form-field>
 
-      <mat-form-field class="example-full-width">
-      <input type="text" matInput placeholder="Password" [formControl]="paswordFormControl" >
-      <!-- <mat-hint>Wprowadź hasło</mat-hint> -->
-    </mat-form-field>
-    <!-- <mat-error *ngIf="paswordFormControl.hasError('pasword') && !paswordFormControl.hasError('required')">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="password: " type="password"  name="paswordFormControl" id="paswordFormControl"  [formControlName]="'paswordFormControl'">
+    <!-- <mat-hint>Wprowadź hasło</mat-hint> -->
+  </mat-form-field>
+  <!-- <mat-error *ngIf="paswordFormControl.hasError('pasword') && !paswordFormControl.hasError('required')">
         Proszę wprowadzić poprawny adrea e-mail
       </mat-error>
       <mat-error *ngIf="paswordFormControl.hasError('required')">
         Email jest <strong>nie poprawny</strong>
       </mat-error> -->
-    <button mat-raised-button type="submit" [disabled]="(paswordFormControl.hasError('required')&&emailFormControl.hasError('required'))">Login</button>
-  </form>
+
+  <button mat-raised-button type="submit" [disabled]="(loginMess.invalid)">Login</button>
+
+</form>
