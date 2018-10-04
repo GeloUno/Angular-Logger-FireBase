@@ -22,5 +22,6 @@
       </mat-error> -->
 
   <button mat-raised-button type="submit" [disabled]="(loginMess.invalid)">Login</button>
+  <button mat-raised-button type="button" (click)="singUp()" [disabled]="(loginMess.invalid)">Singup</button>
 
 </form>

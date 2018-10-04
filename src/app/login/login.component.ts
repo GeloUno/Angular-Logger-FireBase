@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
-
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +17,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 })
 export class LoginComponent implements OnInit {
   constructor(
+    private authService: AuthService,
     public dialogRef: MatDialogRef<LoginComponent> // , @Inject(MAT_DIALOG_DATA) public data: LoginData
   ) {}
 
@@ -47,10 +48,17 @@ export class LoginComponent implements OnInit {
       ])
     });
   }
-  onSubmit(form) {
+  onSubmit() {
     //  console.log(form);
-   console.log(this.loginMess.value.emailFormControl);
-    console.log(this.loginMess.value.paswordFormControl);
-    console.log(this.loginMess);
+   // console.log(this.loginMess.value.emailFormControl);
+  //  console.log(this.loginMess.value.paswordFormControl);
+   // console.log(this.loginMess);
+   this.authService.logInFireBaseSevices(this.loginMess.value.emailFormControl, this.loginMess.value.paswordFormControl);
+  }
+  singUp() {
+  //  console.log(this.loginMess.value.emailFormControl);
+   // console.log(this.loginMess.value.paswordFormControl);
+   // console.log(this.loginMess);
+   this.authService.singUpFireBaseSevices(this.loginMess.value.emailFormControl, this.loginMess.value.paswordFormControl);
   }
 }
