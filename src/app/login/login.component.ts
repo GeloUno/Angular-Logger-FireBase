@@ -20,17 +20,23 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     public dialogRef: MatDialogRef<LoginComponent> // , @Inject(MAT_DIALOG_DATA) public data: LoginData
   ) {}
-
   @ViewChild('form')
   form: NgForm;
   loginMess: FormGroup;
-
+  error = null;
   // loginFormGrup =  new FormGroup()
 
   // matcher = new MyErrorStateMatcher();
 
   ngOnInit() {
     this.loginMess = this.initLoginForm();
+
+    /**
+     * Subscribe method of errors coming from FireBase in service auth
+     */
+    this.authService.getError().subscribe(dataError => {
+      this.error = dataError;
+    });
   }
 
   initLoginForm() {
@@ -41,7 +47,7 @@ export class LoginComponent implements OnInit {
       ]),
       paswordFormControl: new FormControl(null, [
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9$@$!%*?&]{8,}$')
+        Validators.pattern('^[a-zA-Z0-9$@$!%*?&]{5,}$')
 
         //  Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
         // minimum 8 znaków jeden Duża litera, jedna cyfra, jednen znak specjalny
@@ -50,15 +56,21 @@ export class LoginComponent implements OnInit {
   }
   onSubmit() {
     //  console.log(form);
-   // console.log(this.loginMess.value.emailFormControl);
-  //  console.log(this.loginMess.value.paswordFormControl);
-   // console.log(this.loginMess);
-   this.authService.logInFireBaseSevices(this.loginMess.value.emailFormControl, this.loginMess.value.paswordFormControl);
+    // console.log(this.loginMess.value.emailFormControl);
+    //  console.log(this.loginMess.value.paswordFormControl);
+    // console.log(this.loginMess);
+    this.authService.logInFireBaseSevices(
+      this.loginMess.value.emailFormControl,
+      this.loginMess.value.paswordFormControl
+    );
   }
   singUp() {
-  //  console.log(this.loginMess.value.emailFormControl);
-   // console.log(this.loginMess.value.paswordFormControl);
-   // console.log(this.loginMess);
-   this.authService.singUpFireBaseSevices(this.loginMess.value.emailFormControl, this.loginMess.value.paswordFormControl);
+    //  console.log(this.loginMess.value.emailFormControl);
+    // console.log(this.loginMess.value.paswordFormControl);
+    // console.log(this.loginMess);
+    this.authService.singUpFireBaseSevices(
+      this.loginMess.value.emailFormControl,
+      this.loginMess.value.paswordFormControl
+    );
   }
 }
