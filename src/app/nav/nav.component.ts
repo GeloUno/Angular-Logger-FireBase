@@ -10,6 +10,7 @@ import { AuthService } from '../auth/auth.service';
 export class NavComponent {
   animal: string;
   name: string;
+  iconMenu = true;
   constructor(private authService: AuthService, public dialog: MatDialog) {}
 
   loginDialogBox(): void {
@@ -25,4 +26,13 @@ export class NavComponent {
   logOut() {
     this.authService.logout();
   }
+  changeIcon() {
+    this.iconMenu = !this.iconMenu;
+  }
 }
+
+
+
+/**
+ * TODO: elementRef found <div class="mat-drawer-backdrop ng-star-inserted mat-drawer-shown"></div> and add click event
+ */
