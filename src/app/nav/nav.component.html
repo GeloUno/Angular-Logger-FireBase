@@ -7,7 +7,7 @@
       </button>
       <div *ngIf="!this.authService.user">
         <span>Responsive Navigation</span></div>
-      <div *ngIf="this.authService.user"><span>{{this.authService.user.email}}</span></div>
+      <div *ngIf="this?.authService.user"><span>{{this?.authService.user.email}}</span></div>
 
       <span class="example-spacer"></span>
       <div fxShow="true" fxHide.lt-md="true">
@@ -21,7 +21,7 @@
         <button *ngIf="!this.authService.user" mat-button (click)="loginDialogBox()">
           <mat-icon>person</mat-icon> LogIn
         </button>
-      <button mat-button *ngIf="this.authService.user" (click)="logOut()">
+      <button mat-button *ngIf="this?.authService.user" (click)="logOut()">
         <mat-icon>person</mat-icon> LogOut
       </button>
 
@@ -48,7 +48,7 @@
       <button *ngIf="!this.authService.user" mat-button (click)="loginDialogBox()">
         <mat-icon>person</mat-icon> LogIn
       </button>
-    <button mat-button *ngIf="this.authService.user" (click)="logOut()">
+    <button mat-button *ngIf="this?.authService.user" (click)="logOut()">
       <mat-icon>person</mat-icon> LogOut
     </button>
       <a (click)="sidenav.toggle()" mat-list-item>
